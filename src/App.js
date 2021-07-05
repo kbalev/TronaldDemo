@@ -1,25 +1,26 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+const App = () => {
+  const[quote, setQuote] = useState("");
+
+  const handleFetch = async ()=>{
+    // fetch("https://tronalddump.io/random/quote")
+    // .then((res) => res.json())
+    // .then((data) => console.log(data) )
+    const response = await fetch("https://tronalddump.io/random/quote")
+    const data = await response.json()
+    console.log(data)
+
+  }
+
+  return <div>
+    <h1>Tronald Dump quote machine</h1>
+    <p>{quote}</p>
+    <button onClick={handleFetch}>Click</button>
+  </div>
 }
+
 
 export default App;
